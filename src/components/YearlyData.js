@@ -19,6 +19,8 @@ const YearlyData = () => {
       const year = parseInt(yearMatch[0], 10);
 
       const production = item["Crop Production (UOM:t(Tonnes))"];
+      const maxCropName = item["Crop Name"];
+      const minCropName = item["Crop Name"];
 
       // Skip entries without production data
       if (production === "") return;
@@ -29,17 +31,27 @@ const YearlyData = () => {
           year,
           maxProduction: production,
           minProduction: production,
+          maxCropName,
+          minCropName,
         };
       } else {
         // Update max and min production
-        result[year].maxProduction = Math.max(
-          result[year].maxProduction,
-          production
-        );
-        result[year].minProduction = Math.min(
-          result[year].minProduction,
-          production
-        );
+
+        if (production > result[year].maxProduction) {
+          result[year] = {
+            ...result[year],
+            maxProduction: production,
+            maxCropName,
+          };
+        }
+
+        if (production < result[year].maxProduction) {
+          result[year] = {
+            ...result[year],
+            minProduction: production,
+            minCropName,
+          };
+        }
       }
     });
 
@@ -51,6 +63,8 @@ const YearlyData = () => {
     setListingData(data);
     setPaginatedData(data?.slice(0, 10));
   }, []);
+
+  console.log(listingData, "LISTING DATA");
 
   return (
     <>
