@@ -1,11 +1,10 @@
 const Listing = ({ coloumns, listingData }) => {
-  console.log(coloumns, "COLO");
-
   return (
     <table>
-      {/* <p>Hii</p> */}
       <thead>
-        <tr>{coloumns && coloumns.map((item, i) => <th key={i}>{item}</th>)}</tr>
+        <tr>
+          {coloumns && coloumns.map((item, i) => <th key={i}>{item}</th>)}
+        </tr>
       </thead>
       <tbody>
         {listingData &&

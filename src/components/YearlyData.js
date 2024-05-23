@@ -5,6 +5,9 @@ import { Yearly_Coloumn } from "../constants/constants";
 
 const YearlyData = () => {
   const [listingData, setListingData] = useState([]);
+  const [paginatedData, setPaginatedData] = useState([]);
+  const [pageNo, setPagination] = useState(0);
+  const [itemPerPage] = useState(10);
   const processData = (data) => {
     const result = {};
 
@@ -42,12 +45,41 @@ const YearlyData = () => {
     return Object.values(result);
   };
 
+  const handlePaginatedData = () => {
+    let dataCopy = listingData;
+    let currPageData = dataCopy.slice(
+      pageNo * itemPerPage,
+      (pageNo + 1) * itemPerPage
+    );
+    setPaginatedData(currPageData);
+  };
+
+  const handlePreviousPage = () => {
+    setPagination((page) => page - 1);
+  };
+
+  const handleNextPage = () => {
+    setPagination((page) => page + 1);
+  };
 
   useEffect(() => {
     const data = processData(agriData);
     setListingData(data);
+    setPaginatedData(data?.slice(0, 10));
   }, []);
-  return <Listing coloumns={Yearly_Coloumn} listingData={listingData} />;
+
+  useEffect(() => {
+    if (listingData?.length > 0) handlePaginatedData();
+  }, [pageNo]);
+
+  return (
+    <>
+      <Listing coloumns={Yearly_Coloumn} listingData={paginatedData} />
+      <button onClick={handlePreviousPage}>{"<"}</button>
+      <p>{pageNo + 1}</p>
+      <button onClick={handleNextPage}>{">"}</button>
+    </>
+  );
 };
 
 export default YearlyData;
