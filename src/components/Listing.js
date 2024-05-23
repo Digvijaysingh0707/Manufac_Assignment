@@ -11,8 +11,8 @@ const Listing = ({ coloumns, listingData }) => {
           listingData.map((item, i) => (
             <tr key={i}>
               <td>{item.year || item?.cropName}</td>
-              <td>{item.maxProduction || item?.averageYield}</td>
-              <td>{item.minProduction || item?.averageArea}</td>
+              <td>{item.maxCropName || item?.averageYield?.toFixed(3)}</td>
+              <td>{item.minCropName || item?.averageArea?.toFixed(3)}</td>
             </tr>
           ))}
       </tbody>
