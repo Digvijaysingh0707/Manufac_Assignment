@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { agriData } from "../constants/agriData";
 import Listing from "./Listing";
 import { Yearly_Coloumn } from "../constants/constants";
+import CustomPagination from "./CustomPagination";
 
 const YearlyData = () => {
   const [listingData, setListingData] = useState([]);
@@ -45,22 +46,14 @@ const YearlyData = () => {
     return Object.values(result);
   };
 
-  const handlePaginatedData = () => {
-    let dataCopy = listingData;
-    let currPageData = dataCopy.slice(
-      pageNo * itemPerPage,
-      (pageNo + 1) * itemPerPage
-    );
-    setPaginatedData(currPageData);
-  };
-
-  const handlePreviousPage = () => {
-    setPagination((page) => page - 1);
-  };
-
-  const handleNextPage = () => {
-    setPagination((page) => page + 1);
-  };
+  // const handlePaginatedData = () => {
+  //   let dataCopy = listingData;
+  //   let currPageData = dataCopy.slice(
+  //     pageNo * itemPerPage,
+  //     (pageNo + 1) * itemPerPage
+  //   );
+  //   setPaginatedData(currPageData);
+  // };
 
   useEffect(() => {
     const data = processData(agriData);
@@ -68,16 +61,29 @@ const YearlyData = () => {
     setPaginatedData(data?.slice(0, 10));
   }, []);
 
-  useEffect(() => {
-    if (listingData?.length > 0) handlePaginatedData();
-  }, [pageNo]);
+  // useEffect(() => {
+  //   if (listingData?.length > 0) handlePaginatedData();
+  // }, [pageNo]);
 
   return (
     <>
       <Listing coloumns={Yearly_Coloumn} listingData={paginatedData} />
-      <button onClick={handlePreviousPage}>{"<"}</button>
-      <p>{pageNo + 1}</p>
-      <button onClick={handleNextPage}>{">"}</button>
+      {/* <div className="pagination">
+        <button className="pagination-button" onClick={handlePreviousPage}>
+          {"<"}
+        </button>
+        <p className="pagination-number">{pageNo + 1}</p>
+        <button className="pagination-button" onClick={handleNextPage}>
+          {">"}
+        </button>
+      </div> */}
+      <CustomPagination
+        pageNo={pageNo}
+        setPagination={setPagination}
+        itemPerPage={itemPerPage}
+        listingData={listingData}
+        setPaginatedData={setPaginatedData}
+      />
     </>
   );
 };
