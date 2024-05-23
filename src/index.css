@@ -1,3 +1,4 @@
+
 table {
   width: 50%;
   border-collapse: collapse;
@@ -13,8 +14,6 @@ th {
 }
 .pagination {
   display: flex;
-  /*  align-items: left;
-  justify-content: left; */
   margin-top: 20px;
 }
 
@@ -36,5 +35,6 @@ th {
 
 .pagination-number {
   font-size: 18px;
-  margin: 0 10px;
 }
+
+
