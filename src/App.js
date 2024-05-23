@@ -1,4 +1,10 @@
+import YearlyData from "./components/YearlyData";
+
 const App = () => {
-  return <div>Hello</div>;
+  return (
+    <div>
+      <YearlyData />
+    </div>
+  );
 };
 export default App;
