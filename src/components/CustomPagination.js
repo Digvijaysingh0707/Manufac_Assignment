@@ -8,6 +8,7 @@ const CustomPagination = ({
   setPaginatedData,
 }) => {
   const [disableNextPage, setDisableNextPage] = useState(false);
+
   const handlePaginatedData = (data) => {
     let currPageData = data?.slice(
       pageNo * itemPerPage,

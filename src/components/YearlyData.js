@@ -9,6 +9,7 @@ const YearlyData = () => {
   const [paginatedData, setPaginatedData] = useState([]);
   const [pageNo, setPagination] = useState(0);
   const [itemPerPage] = useState(10);
+
   const processData = (data) => {
     const result = {};
 
@@ -63,8 +64,6 @@ const YearlyData = () => {
     setListingData(data);
     setPaginatedData(data?.slice(0, 10));
   }, []);
-
-  console.log(listingData, "LISTING DATA");
 
   return (
     <>
