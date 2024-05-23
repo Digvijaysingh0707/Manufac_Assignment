@@ -35,7 +35,7 @@ const YearlyData = () => {
           maxCropName,
           minCropName,
         };
-      } else {
+      } else if (production != "") {
         // Update max and min production
 
         if (production > result[year].maxProduction) {
