@@ -10,9 +10,9 @@ const Listing = ({ coloumns, listingData }) => {
         {listingData &&
           listingData.map((item, i) => (
             <tr key={i}>
-              <td>{item.year}</td>
-              <td>{item.maxProduction}</td>
-              <td>{item.minProduction}</td>
+              <td>{item.year || item?.cropName}</td>
+              <td>{item.maxProduction || item?.averageYield}</td>
+              <td>{item.minProduction || item?.averageArea}</td>
             </tr>
           ))}
       </tbody>
