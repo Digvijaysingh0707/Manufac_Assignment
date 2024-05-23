@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { agriData } from "../constants/agriData";
 import Listing from "./Listing";
-import { Yearly_Coloumn } from "../constants/constants";
+import { Yearly_Table_Coloumn } from "../constants/constants";
 import CustomPagination from "./CustomPagination";
 
 const YearlyData = () => {
@@ -46,37 +46,15 @@ const YearlyData = () => {
     return Object.values(result);
   };
 
-  // const handlePaginatedData = () => {
-  //   let dataCopy = listingData;
-  //   let currPageData = dataCopy.slice(
-  //     pageNo * itemPerPage,
-  //     (pageNo + 1) * itemPerPage
-  //   );
-  //   setPaginatedData(currPageData);
-  // };
-
   useEffect(() => {
     const data = processData(agriData);
     setListingData(data);
     setPaginatedData(data?.slice(0, 10));
   }, []);
 
-  // useEffect(() => {
-  //   if (listingData?.length > 0) handlePaginatedData();
-  // }, [pageNo]);
-
   return (
     <>
-      <Listing coloumns={Yearly_Coloumn} listingData={paginatedData} />
-      {/* <div className="pagination">
-        <button className="pagination-button" onClick={handlePreviousPage}>
-          {"<"}
-        </button>
-        <p className="pagination-number">{pageNo + 1}</p>
-        <button className="pagination-button" onClick={handleNextPage}>
-          {">"}
-        </button>
-      </div> */}
+      <Listing coloumns={Yearly_Table_Coloumn} listingData={paginatedData} />
       <CustomPagination
         pageNo={pageNo}
         setPagination={setPagination}

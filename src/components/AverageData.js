@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { agriData } from "../constants/agriData";
 import Listing from "./Listing";
-import { Average_Coloumn } from "../constants/constants";
+import { Average_Table_Coloumn } from "../constants/constants";
 import CustomPagination from "./CustomPagination";
 
 const AverageData = () => {
@@ -49,7 +49,7 @@ const AverageData = () => {
 
   return (
     <>
-      <Listing coloumns={Average_Coloumn} listingData={paginatedData} />
+      <Listing coloumns={Average_Table_Coloumn} listingData={paginatedData} />
       <CustomPagination
         pageNo={pageNo}
         setPagination={setPagination}
